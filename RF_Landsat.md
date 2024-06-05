@@ -1,5 +1,4 @@
-/* 
-Author: Okikiola Michael Alegbeleye (alegbeleyeokiki@gmail.com)
+## Author: Okikiola Michael Alegbeleye (alegbeleyeokiki@gmail.com)
 
 Using publicly available resources, this script was developed to perform a 
 random forest classification using Landsat 9 images for a given study location 
@@ -16,25 +15,22 @@ This script perfroms the following:
   3. Clips the study area and loads the LULC training/testing data
   4. Splits the LULC data into 75% for training and 25% for testing data
   5. Trains a Random Forest (RF) classifier
-  6. Validate the RF model 
-  7. Display the variable information
+  6. Validates the RF model 
+  7. Displays the variable information
   
-INPUTS:
-    1. Landsat 9 image
-    2. Dates - Start and End dates
-    3. Region of Interest - Study Area Geometry
-    4. LULC data - Training and Testing data 
+#### INPUTS:
+  1. Landsat 9 image
+  2. Dates - Start and End dates
+  3. Region of Interest - Study Area Geometry
+  4. LULC data - Training and Testing data 
 
-OUTPUTS:
-    1. Composite Image of the study location
-    2. Classified Image of the study location
-    3. Accuracy assessment results 
-    4. Varaible Importance Chart
-============================================================================================
-============================================================================================
-*/
+#### OUTPUTS:
+  1. Composite Image of the study location
+  2. Classified Image of the study location
+  3. Accuracy assessment results 
+  4. Varaible Importance Chart
 
-
+```javascript
 // Dates
 var start_date = "2022-11-01";
 var end_date = "2022-12-30";
@@ -47,7 +43,6 @@ var omo = ee.FeatureCollection("users/alegbeleye_okikiola_michael/omo_forest");
 var dataset = ee.ImageCollection('LANDSAT/LC09/C02/T1_L2')
     .filterDate(start_date, end_date);
 
-
 // This Function applies scaling factors to Landsat bands
 function applyScaleFactors(image) {
   var opticalBands = image.select('SR_B.').multiply(0.0000275).add(-0.2);
@@ -58,30 +53,30 @@ function applyScaleFactors(image) {
 
 // Apply the function to the selected landsat data
 dataset = dataset.map(applyScaleFactors);
+```
 
+This line of code perfroms the following
+  1. selects the needed bands, 
+  2. filters the images' cloud cover (Here, cloud cover < 1)
+  3. applies the median operator to reduce the overlap, and 
+  4. clips the image with the Omo forest boundary feature  
 
-
-/*  This line of code perfroms the following
-        1. selects the needed bands, 
-        2. filters the images' cloud cover (Here, cloud cover < 1)
-        3. applies the median operator to reduce the overlap, and 
-        4. clips the image with the Omo forest boundary feature  
-*/
-
+```javascript
 var omo_landsat = dataset.select(['SR_B2', 'SR_B3', 'SR_B4', 'SR_B5', 'SR_B6','SR_B7'])
                   .filterMetadata('CLOUD_COVER', 'less_than', 1)
                   .median().clip(omo);
                 
 // Print the clipped image properties
 print(omo_landsat);
+```
 
-/* Band combinations for different features - 
-        //  7, 6, 4 for urban and waterways, 
-        //  4,3,2 for Natural Color; 
-        //  6,5,4 for Vegetation Analysis; 
-        //  5,4,3 for color infrared.
-*/
+## Band combinations for different features:
+  1.  7, 6, 4 for urban and waterways, 
+  2.  4,3,2 for Natural Color; 
+  3.  6,5,4 for Vegetation Analysis; 
+  4.  5,4,3 for color infrared.
 
+```javascript
 // Visualization parameter using the natural color band combination
 var vis = {
   bands: ['SR_B4', 'SR_B3', 'SR_B2'],
@@ -95,19 +90,20 @@ Map.centerObject(omo);
 // Display the the map layer (Add false to not display map: 
   // Map.addLayer(omoclip, vis, "Omo Forest NC", false);
 Map.addLayer(omo_landsat, vis, "Omo Forest NC");
+```
 
-/*======================================================================================
-================================= Training/Validation Data =============================
-========================================================================================
+## Training/Validation Data 
 
-  Land cover types        |  Codes    | Number of points
-  High vegetation         |     1     |     241
-  Built-up                |     2     |     147
-  Low vegetation          |     3     |     113
-  Waterbodies             |     4     |     543
-  
-*/
 
+ | Land Cover Types        |  Codes    | Number of Points|
+ |-------------------------|-----------|-----------------|
+ | High vegetation         |     1     |     241         |
+ | Built-up                |     2     |     147         |
+ | Low vegetation          |     3     |     113         |
+ | Waterbodies             |     4     |     53          |
+
+
+```javascript
 // Load the training/testing data from the assets
 var lulc_data = ee.FeatureCollection("users/alegbeleyeokiki/lulc_traintest_data_new");
 
@@ -116,12 +112,13 @@ print(lulc_data, 'LULC Point data');
 
 // Add the points to the map
 Map.addLayer(lulc_data, {color : "brown"}, "LULC Point data");
+```
 
-/* Split the points into training and validation points
-    For random classification, you can create a random points and split them into training
-    and  validation points or you can generate seperate points for training and validation. 
-*/
+For random classification, you can create a random points and split them into _training_
+and _validation_ points or you can generate seperate points for `training` and `validation`. 
 
+```javascript
+Split the points into training and validation points
 var sample = lulc_data.randomColumn();
 
 // 75% training sample
@@ -133,19 +130,16 @@ print(trainingsample, 'Training sample');
 var validationsample = sample.filter('random > 0.75');
 // Print the validation data
 print(validationsample, 'Validation sample');
+```
 
+### Predictor variables to use for classification
 
-/*======================================================================================
-========= Predictor variables to use for classification ================================
-========================================================================================
+_Several bands, topographic data, climatic data and indices can be used as predictors
+when classifying LULC. Here, we only used selected Sentinel bands.
+The spectral values of the bands are extracted using the training and validation points.
+The "level" is unique to different land covers._
 
-Several bands, topographic data, climatic data and indices can be used as predictors
-when classifying LULC. Here, we are using only selected Sentinel bands.
-
-The spectral values of the bands are extracted using the training and validation points
-  The "level" is unique to different land covers
-*/
-
+```javascript
 // Training sample extraction
 var training = omo_landsat.sampleRegions({
     collection: trainingsample,
@@ -163,14 +157,12 @@ var validation = omo_landsat.sampleRegions({
 });
 
 print(validation, 'Validation Band values');
+```
 
-/*  RF Classifier Model Building
+### RF Classifier Model Building
+_The number of decision tree used was 50 and this is flexible._
 
- ee.Classifier.smileRandomForest(numberOfTrees, 
-                                variablesPerSplit, minLeafPopulation, 
-                                bagFraction, maxNodes, seed)
-*/
-
+```javascript
 // Training a Random Forest model
 var randomforest = ee.Classifier.smileRandomForest(50).train({
   features: training,
@@ -190,13 +182,12 @@ var lulc_palette = [
 
 // Display the classified Omo forest
 Map.addLayer(classified, {palette: lulc_palette, min: 1, max: 4}, 'Classified map');
+```
 
 
-/*=========================================================================================
-=========================== Validation Accuracy Assessment ================================
-===========================================================================================
-*/
+###  Accuracy Assessment
 
+```javascript
 var model_validation = validation.classify(randomforest);
 
 /* Confusion matrix and the overall accuracy for the validation sample */
@@ -205,8 +196,11 @@ var validation_accuracy = model_validation.errorMatrix('level', 'classification'
 /* Print the results*/
 print(validation_accuracy, 'Validation Error matrix');
 print(validation_accuracy.accuracy(), 'Overall Validation Accuracy');
+```
 
-/*  Variable Importance */
+###  Variable Importance 
+
+```javascript
 var model_explain = randomforest.explain();
 print(model_explain, 'RF Model Properties');
 
@@ -236,3 +230,5 @@ chart.style().set({
 
 // Display the variable importance chart
 Map.add(chart);
+```
+
