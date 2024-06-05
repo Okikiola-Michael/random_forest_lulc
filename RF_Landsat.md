@@ -55,7 +55,7 @@ function applyScaleFactors(image) {
 dataset = dataset.map(applyScaleFactors);
 ```
 
-This line of code perfroms the following
+This line of code performs the following:
   1. selects the needed bands, 
   2. filters the images' cloud cover (Here, cloud cover < 1)
   3. applies the median operator to reduce the overlap, and 
@@ -71,10 +71,10 @@ print(omo_landsat);
 ```
 
 ## Band combinations for different features:
-  1.  Bands 7,6, and 4 for urban and waterways, 
-  2.  Bands 4,3, and 2 for Natural Color; 
-  3.  Bands 6,5, and 4 for Vegetation Analysis; 
-  4.  Band 5,4, and 3 for color infrared.
+  1.  Bands 7, 6, and 4 for urban and waterways, 
+  2.  Bands 4, 3, and 2 for Natural Color; 
+  3.  Bands 6, 5, and 4 for Vegetation Analysis; 
+  4.  Band 5, 4, and 3 for color infrared.
 
 ```javascript
 // Visualization parameter using the natural color band combination
