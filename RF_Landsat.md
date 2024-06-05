@@ -71,10 +71,10 @@ print(omo_landsat);
 ```
 
 ## Band combinations for different features:
-  1.  7, 6, 4 for urban and waterways, 
-  2.  4,3,2 for Natural Color; 
-  3.  6,5,4 for Vegetation Analysis; 
-  4.  5,4,3 for color infrared.
+  1.  Bands 7,6, and 4 for urban and waterways, 
+  2.  Bands 4,3, and 2 for Natural Color; 
+  3.  Bands 6,5, and 4 for Vegetation Analysis; 
+  4.  Band 5,4, and 3 for color infrared.
 
 ```javascript
 // Visualization parameter using the natural color band combination
