@@ -1,7 +1,7 @@
 ## Author: Okikiola Michael Alegbeleye (alegbeleyeokiki@gmail.com)
 
 Using publicly available resources, this script was developed to perform a 
-random forest classification using Landsat 9 images for a given study location 
+random forest classification using Sentinel 2 images for a given study location 
 (Here, we used Omo Forest in Nigeria).
 
 This script is free and by using/adapting it or any data derived with it, 
