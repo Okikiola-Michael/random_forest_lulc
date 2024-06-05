@@ -135,7 +135,7 @@ print(validationsample, 'Validation sample');
 ### Predictor variables to use for classification
 
 _Several bands, topographic data, climatic data and indices can be used as predictors
-when classifying LULC. Here, we only used selected Sentinel bands.
+when classifying LULC. Here, we only used selected Landsat bands.
 The spectral values of the bands are extracted using the training and validation points.
 The "level" is unique to different land covers._
 
