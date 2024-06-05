@@ -74,7 +74,7 @@ print(omo_landsat);
   1.  Bands 7, 6, and 4 for urban and waterways, 
   2.  Bands 4, 3, and 2 for Natural Color; 
   3.  Bands 6, 5, and 4 for Vegetation Analysis; 
-  4.  Band 5, 4, and 3 for color infrared.
+  4.  Bands 5, 4, and 3 for color infrared.
 
 ```javascript
 // Visualization parameter using the natural color band combination
@@ -92,8 +92,8 @@ Map.centerObject(omo);
 Map.addLayer(omo_landsat, vis, "Omo Forest NC");
 ```
 
-## Training/Validation Data 
-
+## Training and Validation Data 
+_The total number of samples is 554 and were randomly generated._ _Users can upload their data as an asset_ 
 
  | Land Cover Types        |  Codes    | Number of Points|
  |-------------------------|-----------|-----------------|
