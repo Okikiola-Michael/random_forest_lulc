@@ -231,4 +231,14 @@ chart.style().set({
 // Display the variable importance chart
 Map.add(chart);
 ```
+### Export the classified lulc map to Google drive (Uncomment (Ctrl + /) to run)
 
+```javascript
+// Export.image.toDrive({
+//   image: classified,
+//   description: 'Omo_2022_LULC_Map',
+//   scale: 10,
+//   maxPixels:1e13
+// });
+```
+_Download the Variable Importance Chart by clicking the arrow on it._
