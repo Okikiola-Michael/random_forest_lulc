@@ -102,7 +102,7 @@ print(omo_sentinel);
   1.  Bands 12, 11, and 4 for urban, 
   2.  Bands 4, 3, and 2 for Natural Color; 
   3.  Bands 11, 8, and 4 for Vegetation Analysis; 
-  4.  Band 8, 4, and 3 for color infrared.
+  4.  Bands 8, 4, and 3 for color infrared.
 
 ```javascript
 // Visualization parameter using the natural color band combination
@@ -120,7 +120,7 @@ Map.centerObject(omo);
 Map.addLayer(omo_sentinel, vis, "Omo Sentinel NC");
 ```
 
-## Training/Validation Data 
+## Training and Validation Data 
 _The total number of samples is 554 and were randomly generated._ _Users can upload their data as an asset_ 
 
  | Land Cover Types        |  Codes    | Number of Points|
