@@ -12,7 +12,7 @@ use and land cover classification using a random forest classifier. The scripts 
 Using publicly available resources, this script was developed to perform a basic
 random forest classification using [Landsat 9](https://developers.google.com/earth-engine/datasets/catalog/LANDSAT_LC09_C02_T1_L2)  and [Sentinel 2](https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S2_SR_HARMONIZED) imageries for a region of interest.
 
-  1. The [`RF_landsat`](https://github.com/Okikiola-Michael/random_forest_lulc/blob/main/RF_Landsat.md) script classifies a region of interest using a random forest classifier on Landsat 9 surface reflectance imageries
+  1. The [`RF_Landsat`](https://github.com/Okikiola-Michael/random_forest_lulc/blob/main/RF_Landsat.md) script classifies a region of interest using a random forest classifier on Landsat 9 surface reflectance imageries
   2. The [`RF_Sentinel`](https://github.com/Okikiola-Michael/random_forest_lulc/blob/main/RF_Sentinel.md) script classifies a region of interest using a random forest classifier on Sentinel 2 surface reflectance imageries
 
 
