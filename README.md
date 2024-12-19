@@ -42,5 +42,5 @@ you agree to cite the following reference:
 
 Publication: 
 
-Alegbeleye, O.M., Rotimi, Y.O., Shomide, P. et al. Land use land cover (LULC) analysis in Nigeria: a systematic review of data, methods, and platforms with future prospects. Bull Natl Res Cent 48, 127 (2024). https://doi.org/10.1186/s42269-024-01286-z
+> Alegbeleye, O.M., Rotimi, Y.O., Shomide, P. et al. Land use land cover (LULC) analysis in Nigeria: a systematic review of data, methods, and platforms with future prospects. Bull Natl Res Cent 48, 127 (2024). https://doi.org/10.1186/s42269-024-01286-z
 
