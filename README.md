@@ -1,6 +1,6 @@
 ## Land use and Land cover Analysis in GEE - Random Forest
 This repository contains two [Google Earth Engine](https://code.earthengine.google.com/) javascript scripts to perform a basic land 
-use and land cover classification using a random forest classifier. The scripts are parts of a [publication] (publication link)
+use and land cover classification using a random forest classifier. The scripts are parts of a [publication](https://bnrc.springeropen.com/articles/10.1186/s42269-024-01286-z).
 
 | Natural Color                                                                        | Classified LULC Map                                         |
 |--------------------------------------------------------------------------------------|-------------------------------------------------------------|
@@ -41,3 +41,6 @@ This script is free and by using/adapting it or any data derived with it,
 you agree to cite the following reference: 
 
 Publication: 
+
+Alegbeleye, O.M., Rotimi, Y.O., Shomide, P. et al. Land use land cover (LULC) analysis in Nigeria: a systematic review of data, methods, and platforms with future prospects. Bull Natl Res Cent 48, 127 (2024). https://doi.org/10.1186/s42269-024-01286-z
+
