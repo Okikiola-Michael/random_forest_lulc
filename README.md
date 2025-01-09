@@ -40,7 +40,19 @@ The script perfroms the following:
 This script is free and by using/adapting it or any data derived with it, 
 you agree to cite the following reference: 
 
-Publication: 
+## Publication: 
 
 > Alegbeleye, O.M., Rotimi, Y.O., Shomide, P. et al. Land use land cover (LULC) analysis in Nigeria: a systematic review of data, methods, and platforms with future prospects. Bull Natl Res Cent 48, 127 (2024). https://doi.org/10.1186/s42269-024-01286-z
 
+```
+@article{alegbeleye2024land,
+  title={Land use land cover (LULC) analysis in Nigeria: a systematic review of data, methods, and platforms with future prospects},
+  author={Alegbeleye, Okikiola Michael and Rotimi, Yetunde Oladepe and Shomide, Patricia and Oyediran, Abiodun and Ogundipe, Oluwadamilola and Akintunde-Alo, Abiodun},
+  journal={Bulletin of the National Research Centre},
+  volume={48},
+  number={1},
+  pages={1--13},
+  year={2024},
+  publisher={SpringerOpen}
+}
+```
